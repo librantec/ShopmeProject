@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+	<title>[[${pageTitle}]]</title>
+	
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/css/all.min.css}" />
+	
+    <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+<body>
+	<div class="container-fluid px-3">
+		<!-- Navigation Menu -->
+		<div th:replace="~{navigation :: menu}"></div>
+
+		<div class="mt-3 mb-3">
+			<h2>Manage Brands | [[${pageTitle}]]</h2>
+		</div>
+
+		<!-- Form Section -->
+        <div class="card shadow-sm mx-auto" style="max-width: 700px;">
+            <div class="card-body p-4">
+                <form th:action="@{/brands/save}" method="post" th:object="${brand}"
+                    style="max-width: 600px; margin: 0 auto;" enctype="multipart/form-data"
+                        onsubmit="return checkUnique(this)">
+                    <input type="hidden" th:field="*{id}" />
+                    <div class="mb-3 row">
+                        <label class="col-sm-4 col-form-label text-sm-end">Brand Name:</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" th:field="*{name}" required th:minlength="3" th:maxlength="128" />
+                        </div>
+                    </div>
+
+                    <!-- <div class="mb-3 row">
+                        <label class="col-sm-4 col-form-label text-sm-end">Brand Logo:</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" th:field="*{alias}" required th:minlength="3"
+                                th:maxlength="64" placeholder="Default is category name (spaces replaced by dashes)" />
+                        </div>
+                    </div> -->
+
+                    <div class="mb-3 row">
+                        <label class="col-sm-4 col-form-label text-sm-end">Brand Logo:</label>
+                        <div class="col-sm-8">
+							<input type="hidden" th:field="*{logo}" />
+							<input type="file" id="fileImage" name="fileImage" accept="image/png, image/jpeg" class="mb-2"
+								th:required="${brand.logoPath == null}" />
+							<div class="mt-2">
+								<img id="thumbnail" alt="Image preview" 
+								     th:src="@{${brand.logoPath != null ? brand.logoPath : '/images/image-thumbnail.png'}}" 
+								     class="img-fluid border rounded" 
+								     style="width: 100px; height: 100px; object-fit: contain; padding: 5px; background-color: #f8f9fa;" />
+							</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3 row">
+                        <label class="col-sm-4 col-form-label text-sm-end">Select one or more categories:</label>
+                        <div class="col-sm-8">
+                            <select class="form-select" th:field="*{categories}" multiple required
+                                    style="resize: vertical; height: 200px">
+                                <!-- <option value="">[No Parent]</option> -->
+                                <th:block th:each="cat : ${listCategories}">
+                                    <option th:value="${cat.id}">[[${cat.name}]]</option>
+                                </th:block>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label class="col-sm-4 col-form-label text-sm-end">Chosen categories:</label>
+                        <div class="col-sm-8 pt-2">
+                            <div id="chosenCategories">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <input type="submit" value="Save" class="btn btn-primary me-2" /> 
+                        <input type="button" value="Cancel" class="btn btn-secondary" id="buttonCancel" />
+                    </div>
+                </form>
+
+                <!-- Modal Dialog -->
+				<div class="modal fade text-center" id="modalDialog">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title" id="modalTitle">Warning</h4>
+								<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+							</div>
+				
+							<div class="modal-body">
+								<span id="modalBody"></span>
+							</div>
+				
+							<div class="modal-footer">
+								<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+
+        <div th:replace="~{fragments :: footer}"></div>
+	</div>
+
+	<script type="text/javascript">
+    $(document).ready(function() {
+        $("#buttonCancel").on("click", function() {
+            window.location = "[[@{/brands}]]";
+        });
+        
+        // I-check kung naa message gikan sa RedirectAttributes
+        var message = "[[${message}]]";
+        if (message != "") {
+        	showModalDialog("Error", message);
+        }
+    });
+	
+	// Mao ni ang variable nga gamiton sa imong external script.js
+	var checkUniqueUrl = "[[@{/brands/check_unique}]]";
+	var moduleURL = "[[@{/brands}]]";
+</script>
+<script type="text/javascript" th:src="@{/js/script.js}"></script>
+</body>
+</html>

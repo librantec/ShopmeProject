@@ -1,0 +1,29 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- 1. I-add ang Spring Boot Parent diri sa ROOT -->
+	<parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.5.13</version> <!-- Gamita ang 3.4.0, stable ni ug paspas sa Java 21 -->
+    <!--<version>3.2.5</version>-->
+    <relativePath/> 
+  </parent>
+
+  <groupId>com.shopme</groupId>
+  <artifactId>ShopmeProject</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>Shopme Project</name>
+
+  <properties>
+    <java.version>21</java.version>
+  </properties>
+  
+  <modules>
+    <module>ShopmeCommon</module>
+    <module>ShopmeWebParent</module>
+  </modules>
+</project>

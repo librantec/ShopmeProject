@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+	/* CSS for Search Box */
+.dataTables_filter {
+	margin-bottom: 15px; /* Maghatag ni og space sa ubos sa search box */
+}
+
+.dataTables_length {
+	margin-bottom: 15px; /* Para pati ang "Show entries" naay space */
+}
+
+	/* CSS for Icon for login */
+.icon-silver {
+	color: silver;
+}

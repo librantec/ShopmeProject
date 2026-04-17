@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+<title>Login - Shopme Admin</title>
+
+<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+<!-- Gamay nga CSS para ma-full height ang screen -->
+<style>
+html, body {
+	height: 100%;
+}
+</style>
+</head>
+<body class="d-flex align-items-center">
+    <!-- Kani ang mo-center vertically -->
+
+    <div class="container-fluid text-center w-100">
+        <!-- HEADER / LOGO -->
+        <div class="mb-3">
+            <img th:src="@{/images/ShopmeAdminBig.png}" class="img-fluid" style="max-width: 300px;" />
+        </div>
+
+        <!-- LOGIN FORM -->
+        <div class="border border-secondary rounded p-4 shadow-sm" style="max-width: 400px; margin: 0 auto;">
+            <form th:action="@{/login}" method="post">
+                <h5 class="mb-3">Access to Shopme Control Panel</h5>
+
+                <div th:if="${param.error}" class="alert alert-danger text-center">
+                    <!-- I-check nato kung naay exception sa session, kung wala, generic error -->
+                    <span th:if="${session.SPRING_SECURITY_LAST_EXCEPTION != null}"
+                        th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}"> Error message placeholder </span> 
+                    <span th:unless="${session.SPRING_SECURITY_LAST_EXCEPTION != null}"> Invalid email or password.</span>
+                </div>
+
+                <!-- LOGOUT MESSAGE -->
+                <div th:if="${param.logout}" class="alert alert-success text-center">
+                    <p class="mb-0">You have been logged out.</p>
+                </div>
+
+                <div class="mb-3">
+                    <input type="email" name="username" class="form-control" placeholder="E-mail" required />
+                </div>
+                <div class="mb-3">
+                    <input type="password" name="password" class="form-control" placeholder="Password" required />
+                </div>
+
+                <div class="mt-2 mb-3 text-start" style="max-width: 400px; margin: 0 auto;">
+                    <input type="checkbox" name="remember-me" id="remember-me" /> 
+                    <label for="remember-me" class="ms-1">Remember Me</label>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <input type="submit" value="Login" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="text-center mt-4">
+            <p class="small text-muted">Shopme Control Panel - Copyright &copy; Shopme</p>
+        </div>
+    </div>
+</body>
+</html>
