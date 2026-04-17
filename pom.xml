@@ -5,12 +5,12 @@
 
 	<!-- 1. I-add ang Spring Boot Parent diri sa ROOT -->
 	<parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.5.13</version> <!-- Gamita ang 3.4.0, stable ni ug paspas sa Java 21 -->
-    <!--<version>3.2.5</version>-->
-    <relativePath/> 
-  </parent>
+    	<groupId>org.springframework.boot</groupId>
+    	<artifactId>spring-boot-starter-parent</artifactId>
+    	<version>3.5.13</version> <!-- Gamita ang 3.4.0, stable ni ug paspas sa Java 21 -->
+    	<!--<version>3.2.5</version>-->
+    	<relativePath/> 
+  	</parent>
 
   <groupId>com.shopme</groupId>
   <artifactId>ShopmeProject</artifactId>
