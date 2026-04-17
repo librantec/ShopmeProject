@@ -32,6 +32,7 @@ public class FileUploadUtil {
         }
     }
     
+    // This testing kung mausab ba ang icon sa mga folder.
     // limpyohan nya ang sulod sa folder sa usa ka user aron usa nalang ka image ang magpabilin.
 	public static void cleanDir(String dir) {
 		Path dirPath = Paths.get(dir);
