@@ -42,7 +42,7 @@ public class WebSecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     	http.authorizeHttpRequests(auth -> auth
     			// I-insert ni nga linya para tugotan ang imong REST API
-    		    .requestMatchers("/api/**").permitAll()
+    		    //.requestMatchers("/api/**").permitAll()
     			.requestMatchers("/users/**").hasAuthority("Admin")
     			.requestMatchers("/categories/**", "/brands/**").hasAnyAuthority("Admin", "Editor")
                 .requestMatchers("/images/**", "/js/**", "/webjars/**", "/user-photos/**", "/category-images/**").permitAll()
