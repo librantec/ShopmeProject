@@ -18,6 +18,10 @@ public class BrandService {
 		return (List<Brand>) repo.findAll();
 	}
 	
+	// Idugang ni sa pinakabait sa listAll()
+	public List<Brand> listAllOrderByName() {
+	    return (List<Brand>) repo.findAllOrderByName();
+	}
 	
 	public Brand save(Brand brand) {
 		return repo.save(brand);

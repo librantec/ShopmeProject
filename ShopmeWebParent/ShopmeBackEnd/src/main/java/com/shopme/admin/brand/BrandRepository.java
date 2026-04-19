@@ -7,13 +7,18 @@ import com.shopme.common.entity.Brand;
 
 // Gamita ang JpaRepository para makuha ang save(), findById(), ug uban pa
 public interface BrandRepository extends JpaRepository<Brand, Integer> {
-
+	
+	public Long countById(Integer id);
+	
     // Kinahanglan sad ni nimo para sa validation unya
     public Brand findByName(String name);
 
     // Kani para sa listing page nga naay sorting
     @Query("SELECT NEW Brand(b.id, b.name) FROM Brand b ORDER BY b.name ASC")
     public List<Brand> findAllOrderByName();
-    
-    public Long countById(Integer id);
+    	
+	/*
+	 * @Query("SELECT NEW Brand(b.id, b.name) FROM Brand b ORDER BY b.name ASC")
+	 * public List<Brand> findAll();
+	 */
 }
