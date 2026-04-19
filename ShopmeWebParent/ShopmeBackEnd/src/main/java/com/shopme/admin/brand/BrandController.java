@@ -22,11 +22,9 @@ import com.shopme.common.entity.Category;
 @Controller
 public class BrandController {
 
-	@Autowired
-	private BrandService brandService;
+	@Autowired private BrandService brandService;
 	
-	@Autowired
-	private CategoryService categoryService;
+	@Autowired private CategoryService categoryService;
 	
 	
 	@GetMapping("/brands")

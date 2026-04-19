@@ -45,6 +45,7 @@ public class WebSecurityConfig {
     		    //.requestMatchers("/api/**").permitAll()
     			.requestMatchers("/users/**").hasAuthority("Admin")
     			.requestMatchers("/categories/**", "/brands/**").hasAnyAuthority("Admin", "Editor")
+    			.requestMatchers("/products/**").hasAnyAuthority("Admin", "Editor", "Salesperson","Shipper")
                 .requestMatchers("/images/**", "/js/**", "/webjars/**", "/user-photos/**", "/category-images/**").permitAll()
                 .requestMatchers("/login").permitAll()
                 .anyRequest().authenticated()
@@ -64,7 +65,7 @@ public class WebSecurityConfig {
                 .key("AbcDefgHijKlmnOpqrs_1234567890")
                 .tokenValiditySeconds(7 * 24 * 60 * 60)
             )
-				/* .csrf(csrf -> csrf.disable()) */
+			//.csrf(csrf -> csrf.disable()) 
             .csrf(csrf -> {}) 
     		.authenticationProvider(authenticationProvider()); // DIRIA DAPAT, BAI!
         return http.build();
