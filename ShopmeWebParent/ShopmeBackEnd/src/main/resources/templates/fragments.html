@@ -5,7 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 </head>
 <body>
-    <div th:fragment="footer" class="text-center mt-5">
+    <!-- Modal Dialog -->
+    <div th:fragment="modal_dialog" class="modal fade text-center" id="modalDialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modalTitle">Warning</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <span id="modalBody"></span>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Fragment -->
+    <div th:fragment="footer" class="text-center mt-3">
         <p>Shopme Control Panel - Copyright &copy; Shopme</p>
     </div>
 </body>
