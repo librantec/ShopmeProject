@@ -27,8 +27,8 @@
         <div class="form-group row mb-3">
             <label class="col-sm-2 col-form-label">Brand:</label>
             <div class="col-sm-10">
-                <select th:field="*{brand}" class="form-select" required>
-                    <!-- <option value="0">[Select Brand]</option> -->
+                <select th:field="*{brand}" id="brand" class="form-select" required>
+                    <option value="0">[Select Brand]</option>
                     <th:block th:each="brand : ${listBrands}">
                         <option th:value="${brand.id}">[[${brand.name}]]</option>
                     </th:block>
@@ -40,7 +40,7 @@
         <div class="form-group row mb-3">
             <label class="col-sm-2 col-form-label">Category:</label>
             <div class="col-sm-10">
-                <select th:field="*{category}" class="form-select" required>
+                <select th:field="*{category}" id="category" class="form-select" required disabled="disabled">
                     <!-- Blangko lang una ni, i-load via AJAX unya -->
                 </select>
             </div>

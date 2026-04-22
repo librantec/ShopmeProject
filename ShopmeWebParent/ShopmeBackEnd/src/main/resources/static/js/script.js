@@ -124,26 +124,26 @@ function checkUnique(form) {
 }
 
 $(document).ready(function() {
-	dropdownCategories = $("#categories");
-	divChosenCategories = $("#chosenCategories");
+	var brandDropdownCategories = $("#categories");
+	var divChosenCategories = $("#chosenCategories");
 	
-	dropdownCategories.change(function() {
+	brandDropdownCategories.change(function() {
 		divChosenCategories.empty();
-		showChosenCategories();
+		showChosenCategories(brandDropdownCategories, divChosenCategories);
 	});
 	
 		// I-call ni para kon naay data sa sugod (Edit Mode), makita ang badges
-	    showChosenCategories();
+		showChosenCategories(brandDropdownCategories, divChosenCategories);
 });
 
 
-function showChosenCategories() {
-	dropdownCategories.children("option:selected").each(function() {
-		selectedCategory = $(this);
-		catId = selectedCategory.val();
-		catName = selectedCategory.text().replace(/-/g, "");
+function showChosenCategories(dropdown, div) {
+	dropdown.children("option:selected").each(function() {
+		var selectedCategory = $(this);
+		//catId = selectedCategory.val();
+		var catName = selectedCategory.text().replace(/-/g, "");
 		
-		divChosenCategories.append("<span class='badge bg-secondary text-white m-1'>" + catName + "</span>");
+		div.append("<span class='badge bg-secondary m-1'>" + catName + "</span>");
 	});
 }
 
@@ -172,4 +172,31 @@ function checkUnique(form) {
     });
 
     return false;
+}
+
+// pag-load sa Categories inig pili nimo og Brand sa Product Form
+// 1. I-update kini nga block para sa Product Form
+$(document).ready(function() {
+    var selBrand = $("#brand"); // Gigamitan og 'var' para dili global conflict
+    var selCategory = $("#category");
+
+    selBrand.on("change", function() {
+        selCategory.empty();
+        // I-pass nato ang saktong variables sa function
+        fetchCategoriesForProduct(selBrand, selCategory);
+    });
+});
+
+// 2. I-update ang function name ug logic
+function fetchCategoriesForProduct(brandDropdown, categoryDropdown) {
+    var brandId = brandDropdown.val();
+    var url = brandModuleURL + "/" + brandId + "/categories";
+
+    $.get(url, function(responseJson) {
+        $.each(responseJson, function(index, category) {
+            $("<option>").val(category.id).text(category.name).appendTo(categoryDropdown);
+        });
+        // I-enable pagbalik ang dropdown
+        categoryDropdown.removeAttr("disabled");
+    });
 }

@@ -97,8 +97,9 @@
     });
 	
 	// Mao ni ang variable nga gamiton sa imong external script.js
-	//var checkUniqueUrl = "[[@{/brands/check_unique}]]";
-	var moduleURL = "[[@{/products}]]";
+	// Global variables para sa script.js
+    var moduleURL = "[[@{/products}]]";
+    var brandModuleURL = "[[@{/brands}]]";
 </script>
 <script type="text/javascript" th:src="@{/js/script.js}"></script>
 </body>
