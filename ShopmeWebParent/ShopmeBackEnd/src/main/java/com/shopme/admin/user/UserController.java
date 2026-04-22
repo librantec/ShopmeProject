@@ -35,7 +35,7 @@ public class UserController {
 		 model.addAttribute("listUsers", listUsers); 
 		
 		// 3. I-return ang ngalan sa imong HTML file (users.html)
-		return "users";
+		return "users/users";
 	}
 	
 	@GetMapping("/users/new")
@@ -49,7 +49,7 @@ public class UserController {
 	    model.addAttribute("listRoles", listRoles);
 	    model.addAttribute("pageTitle", "Create New User");
 	    
-		return "user_form";
+		return "users/user_form";
 	}
 	
 	

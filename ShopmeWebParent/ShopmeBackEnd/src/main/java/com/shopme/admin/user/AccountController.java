@@ -28,7 +28,7 @@ public class AccountController {
 		
 		model.addAttribute("user", user);
 		
-		return "account_form"; // Mao ni ang HTML file sa imong account details
+		return "users/account_form"; // Mao ni ang HTML file sa imong account details
 	}
 	
 	
@@ -47,7 +47,7 @@ public class AccountController {
 	            User savedUser = service.updateAccount(user);
 	            
 	            // 3. I-handle ang folder ug file
-	            String uploadDir = "user-photos/" + savedUser.getId();
+	            String uploadDir = "../user-photos/" + savedUser.getId();
 	            FileUploadUtil.cleanDir(uploadDir);
 	            FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 	            
@@ -58,6 +58,9 @@ public class AccountController {
 	        
 	        loggedUser.setFirstName(user.getFirstName());
 	        loggedUser.setLastName(user.getLastName());
+	        
+	        // Kung gusto nimo i-update sab ang photo sa top right:
+	        //loggedUser.setPhotos(user.getPhotos());
 	        // Kon molampus, ipakita ang success message
 	        redirectAttributes.addFlashAttribute("message", "Your account details have been updated.");
 	        
