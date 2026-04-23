@@ -151,7 +151,6 @@ function checkUniqueBrand(form) {
     /*url = "[[@{/categories/check_unique}]]";*/
     brandId = $("#id").val();
     brandName = $("#name").val();
-	
     csrfValue = $("input[name='_csrf']").val();
 
     params = { id: brandId, name: brandName, _csrf: csrfValue };
@@ -206,3 +205,26 @@ $(document).ready(function() {
     $("#shortDescription").richText();
     $("#fullDescription").richText();
 });
+
+/*check Uniqueness of Products*/
+function checkUniqueProduct(form) {
+	var productId = $("#id").val();
+	var productName = $("#name").val();
+	var csrfValue = $("input[name='_csrf']").val();
+	
+	var params = {id: productId, name: productName, _csrf: csrfValue};
+	
+	$.post(checkUniqueUrl, params, function(response) {
+		if (response == "OK") {
+			form.submit();
+		} else if (response == "Duplicate") {
+			showWarningModal("There is another product having the same name: " + productName);
+		} else {
+			showErrorModal("Unknown response from server");
+		}
+	}).fail(function() {
+		showErrorModal("Could not connect to server");
+	});
+	
+	return false;
+}

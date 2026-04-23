@@ -23,8 +23,7 @@ import jakarta.servlet.http.HttpServletResponse;
 @Controller
 public class UserController {
 
-	@Autowired
-	private UserService service;
+	@Autowired private UserService service;
 
 	@GetMapping("/users")
 	public String listAll(Model model) {
@@ -121,7 +120,7 @@ public class UserController {
 	        model.addAttribute("pageTitle", "Edit User (ID: " + id + ")");
 	        model.addAttribute("listRoles", listRoles);
 	        
-	        return "user_form"; // Gamiton nato ang karaan nga form pero naay data
+	        return "users/user_form"; // Gamiton nato ang karaan nga form pero naay data
 			
 		} catch (UserNotFoundException ex) {
 			// Kon wala makit-i ang ID, i-redirect balik sa listahan nga naay error message
