@@ -18,6 +18,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "products")
@@ -46,7 +47,7 @@ public class Product {
 	private float price;
 	private float cost;
 	
-	@Column(name = "main_image", nullable = false, length = 128) // base sa imong DB design length
+	@Column(name = "main_image", nullable = true, length = 128) // base sa imong DB design length
 	private String mainImage;
 	
 	@Column(name = "created_time")
@@ -295,4 +296,12 @@ public class Product {
 		return "Product [id=" + id + ", name=" + name + "]";
 	}
 	
+	
+	  @Transient 
+	  public String getMainImagePath() { 
+		  if (id == null || mainImage == null) 
+		  return "/images/default-product.png"; return "/product-images/" +
+		  this.id + "/" + this.mainImage; 
+		  }
+	 	
 }

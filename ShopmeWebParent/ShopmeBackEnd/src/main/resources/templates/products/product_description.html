@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Product Description</title>
+</head>
+<body>
+    <div th:fragment="content" th:remove="tag">
+        <div class="m-2">
+            <label>Short Description:</label>
+            <!-- I-add ang id="shortDescription" -->
+            <textarea th:field="*{shortDescription}" id="shortDescription" class="form-control" rows="5" required
+                placeholder="Mubo nga summary sa produkto..."></textarea>
+        </div>
+
+        <div class="m-2 mt-3">
+            <label class="form-label">Full Description:</label>
+            <textarea th:field="*{fullDescription}" id="fullDescription" 
+                      class="form-control" rows="10" required 
+                      placeholder="Tanan detalye ug specs sa produkto..."></textarea>
+        </div>
+    </div>
+</body>
+</html>

@@ -25,7 +25,7 @@
             <div class="card-body p-4">
                 <form th:action="@{/categories/save}" method="post" th:object="${category}"
                     style="max-width: 600px; margin: 0 auto;" enctype="multipart/form-data" 
-					onsubmit="return checkUnique(this)">
+					onsubmit="return checkUniqueCategory(this)">
 
                     <input type="hidden" th:field="*{id}" />
 

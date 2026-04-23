@@ -87,7 +87,6 @@ function customizeDropDownMenu() {
 	});
 }
 
-
 function checkPasswordMatch(confirmPassword) {
 	if (confirmPassword.value != $("#password").val()) {
 		confirmPassword.setCustomValidity("Password do not match!");
@@ -97,7 +96,7 @@ function checkPasswordMatch(confirmPassword) {
 }
 
 	/*check Uniqueness of Category*/
-function checkUnique(form) {
+function checkUniqueCategory(form) {
     /*url = "[[@{/categories/check_unique}]]";*/
     catName = $("#name").val();
     catAlias = $("#alias").val();
@@ -148,7 +147,7 @@ function showChosenCategories(dropdown, div) {
 }
 
 	/*check Uniqueness of Brands*/
-function checkUnique(form) {
+function checkUniqueBrand(form) {
     /*url = "[[@{/categories/check_unique}]]";*/
     brandId = $("#id").val();
     brandName = $("#name").val();
@@ -200,3 +199,10 @@ function fetchCategoriesForProduct(brandDropdown, categoryDropdown) {
         categoryDropdown.removeAttr("disabled");
     });
 }
+
+// Richtext Editor
+$(document).ready(function() {
+    // I-initialize ang RichText para sa Short ug Full Description
+    $("#shortDescription").richText();
+    $("#fullDescription").richText();
+});
