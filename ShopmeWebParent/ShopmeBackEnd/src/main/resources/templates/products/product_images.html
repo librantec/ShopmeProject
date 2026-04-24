@@ -5,26 +5,38 @@
 <title>Product Shipping</title>
 </head>
 <body>
-    <div th:fragment="content" th:remove="tag">
-    <div class="row pt-3">
-        <!-- Main Image Section -->
-        <div class="col border m-3 p-2">
+<div th:fragment="content" th:remove="tag">
+    <!-- Gamita ang d-flex ug flex-wrap para mo-linya sila pa-tuo -->
+    <div class="row d-flex flex-wrap justify-content-start pt-3" id="divProductImages">
+        
+        <!-- Main Image Box -->
+        <div class="col-sm-4 border m-3 p-2">
             <div><label>Main Image:</label></div>
             <div class="m-2">
-                <!-- Ang id="thumbnail" mao ni ang gamiton sa script.js para sa preview -->
-                <img id="thumbnail" alt="Main image preview" class="img-fluid"
-                    th:src="@{${product.mainImagePath}}" style="width: 150px;"/>
+                <img id="thumbnail" alt="Main image preview" class="img-fluid" 
+                     th:src="@{${product.mainImagePath}}" style="width: 150px; height: 150px; object-fit: cover;"/>
             </div>
             <div>
-                <!-- Ang name="fileImage" dapat match sa @RequestParam sa Controller -->
-                <input type="file" id="fileImage" name="fileImage" 
-                    accept="image/png, image/jpeg" class="mb-2"
-                    th:required="${product.id == null}" />
+                <input type="file" id="fileImage" name="fileImage" accept="image/png, image/jpeg" 
+                       th:required="${product.id == null}" />
+            </div>
+        </div>
+
+        <!-- Extra Image #0 (Default box) -->
+        <div class="col-sm-4 border m-3 p-2" id="divExtraImage0">
+            <div><label>Extra Image #1:</label></div>
+            <div class="m-2">
+                <img id="extraThumbnail0" alt="Extra image #1 preview" class="img-fluid" 
+                     th:src="@{/images/image-thumbnail.png}" style="width: 150px; height: 150px; object-fit: cover;"/>
+            </div>
+            <div>
+                <input type="file" name="extraImage" accept="image/png, image/jpeg" 
+                       onchange="showExtraImageThumbnail(this, 0)" />
             </div>
         </div>
         
-        <!-- Diri dapit ang Extra Images unya (Step 4 & 5) -->
     </div>
-    </div>
+</div>
+
 </body>
 </html>

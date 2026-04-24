@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>Manage Brand - Shopme Admin</title>
-    
+        
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/css/all.min.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
@@ -76,9 +76,11 @@
                         <td>[[${brand.name}]]</td>
                         <td>
                             <!-- I-loop ang categories isip badges --> 
+                            <div style="display: flex; flex-wrap: wrap; gap: 3px; max-width: 250px;">
                             <th:block th:each="cat : ${brand.categories}">
                                 <span class="badge bg-secondary text-white m-1" th:text="${cat.name}"></span>
                             </th:block>
+                            </div>
                         </td>
                         <td>
                             <a class="fas fa-edit fa-2x text-success text-decoration-none" 
@@ -106,9 +108,17 @@
 			"ordering": false, // I-disable ang automatic sort
             "responsive": true,
             "columnDefs": [
-                { "responsivePriority": 1, "targets": 0 },
-                { "responsivePriority": 2, "targets": 2 },
-                { "responsivePriority": 3, "targets": -1 }
+            	{ "responsivePriority": 1, "targets": 2 }, // Brand Name (Pabilin sa screen)
+                { "responsivePriority": 2, "targets": 4 }, // Actions (Pabilin sa screen)
+                { "responsivePriority": 3, "targets": 0 }, // Brand ID
+                
+                // KANI ANG MAGIC:
+                { 
+                    "targets": 1, // Logo column
+                    "className": "none" // Ang 'none' sa DataTables nagpasabot: "Itago sa main table, pero ipakita sa child row (+)"
+                },
+                
+                { "responsivePriority": 11, "targets": 3 } // Categories
             ],
             "pageLength": 10,
             "stateSave": true,
