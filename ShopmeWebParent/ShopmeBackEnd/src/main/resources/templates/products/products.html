@@ -68,13 +68,7 @@
                     <tr th:each="product : ${listProducts}">
                         <td>[[${product.id}]]</td>
 						<td>
-                        <!-- Kon walay logo (null o empty), i-display ang default thumbnail -->
-                        <!-- <img th:if="${brand.logo == null}" th:src="@{/images/image-thumbnail.png}" 
-                                style="width: 100px; height: 100px; object-fit: contain;" class="img-thumbnail" /> -->
-         
-                        <!-- Kon naay logo, gamita ang iyang logoPath -->
-                        <!-- <img th:if="${brand.logo != null}" th:src="@{${brand.logoPath}}" 
-                                style="width: 100px; height: 100px; object-fit: contain;" class="img-thumbnail" /> -->
+                            <img th:src="@{${product.mainImagePath}}" style="width: 120px; height: auto;" class="img-fluid" /> 
                         </td>
                         
                         <td>[[${product.name}]]</td>
@@ -107,27 +101,8 @@
         <div th:replace="~{fragments :: footer}"></div>
     </div>
 
-    <!-- Modal Dialog -->
-    <div class="modal fade text-center" id="confirmModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Delete Confirmation</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-
-                <div class="modal-body">
-                    <span id="confirmText"></span>
-                </div>
-
-                <div class="modal-footer">
-                    <a class="btn btn-success" href="" id="yesButton">Yes</a>
-                    <button type="button" class="btn btn-danger"
-                        data-bs-dismiss="modal">No</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Modal Dialog for Delete -->
+    <div th:replace="~{fragments :: confirm_modal}"></div>
 
     <!-- 4. Initialization Script -->
     <script type="text/javascript">

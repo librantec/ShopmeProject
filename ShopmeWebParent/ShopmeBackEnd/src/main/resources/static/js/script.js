@@ -199,12 +199,22 @@ function fetchCategoriesForProduct(brandDropdown, categoryDropdown) {
     });
 }
 
-// Richtext Editor
+// Richtext Editor (Gi-update para dili mag-error kon wala ang library)
 $(document).ready(function() {
-    // I-initialize ang RichText para sa Short ug Full Description
-    $("#shortDescription").richText();
-    $("#fullDescription").richText();
+    // I-check kon ang element ba nag-exist sa page
+    var shortDesc = $("#shortDescription");
+    var fullDesc = $("#fullDescription");
+
+    // Siguroha nga ang element naa sa page AND loaded ang richText function
+    if (shortDesc.length > 0 && typeof $.fn.richText === 'function') {
+        shortDesc.richText();
+    }
+    
+    if (fullDesc.length > 0 && typeof $.fn.richText === 'function') {
+        fullDesc.richText();
+    }
 });
+
 
 /*check Uniqueness of Products*/
 function checkUniqueProduct(form) {

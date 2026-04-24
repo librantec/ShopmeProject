@@ -1,25 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-	<title>Manage Users - Shopme Admin</title>
-	
-    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
-	<link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/css/all.min.css}" />
-	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
-	<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
-	
-	<!-- 1. LOCAL DATATABLES CSS (Dili na ma-block!) -->
-	<link rel="stylesheet" type="text/css" th:href="@{/webjars/datatables/css/jquery.dataTables.min.css}" />
-	<link rel="stylesheet" type="text/css" th:href="@{/webjars/datatables-responsive/css/responsive.dataTables.min.css}" />
-	
-	<!-- 2. LOCAL DATATABLES JS -->
-	<script type="text/javascript" th:src="@{/webjars/datatables/js/jquery.dataTables.min.js}"></script>
-	<script type="text/javascript" th:src="@{/webjars/datatables-responsive/js/dataTables.responsive.min.js}"></script>
-	<!-- <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script> -->
-	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
-	
+<head th:replace="~{fragments :: page_head('Manage Users', ~{::link_extra})}">
+    <!-- Kani ra ang i-pass nga extra para sa Users module -->
+    <th:block th:fragment="link_extra">
+        <link rel="stylesheet" type="text/css" th:href="@{/webjars/datatables/css/jquery.dataTables.min.css}" />
+        <link rel="stylesheet" type="text/css" th:href="@{/webjars/datatables-responsive/css/responsive.dataTables.min.css}" />
+        
+        <script type="text/javascript" th:src="@{/webjars/datatables/js/jquery.dataTables.min.js}"></script>
+        <script type="text/javascript" th:src="@{/webjars/datatables-responsive/js/dataTables.responsive.min.js}"></script>
+    </th:block>
 </head>
 <body>
 	<div class="container-fluid px-3">
@@ -103,27 +92,8 @@
 		<div th:replace="~{fragments :: footer}"></div>
 	</div>
 
-	<!-- Modal Dialog -->
-	<div class="modal fade text-center" id="confirmModal">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title">Delete Confirmation</h4>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-				</div>
-
-				<div class="modal-body">
-					<span id="confirmText"></span>
-				</div>
-
-				<div class="modal-footer">
-					<a class="btn btn-success" href="" id="yesButton">Yes</a>
-					<button type="button" class="btn btn-danger"
-						data-bs-dismiss="modal">No</button>
-				</div>
-			</div>
-		</div>
-	</div>
+	<!-- Modal Dialog for Delete -->
+	<div th:replace="~{fragments :: confirm_modal}"></div>
 
 	<!-- 4. Initialization Script -->
 	<script type="text/javascript">

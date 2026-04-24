@@ -1,10 +1,45 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
-<head>
+<!-- I-wrap nato ang Head, unya butangan nato og 'title' ug 'extra_links' nga parameter -->
+<head th:fragment="page_head(title, extra_links)">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>[[${title}]] - Shopme Admin</title>
+
+    <!-- Common CSS (Naa sa tanan) -->
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/css/all.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    
+    <!-- Common JS (Naa sa tanan) -->
+    <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+    <!-- Kani nga part maoy modawat sa imong 'custom' links (DataTables, etc.) -->
+    <th:block th:replace="${extra_links}"></th:block>
 </head>
 <body>
+
+<!-- Confirm Modal Fragment (Para sa Delete) -->
+<div th:fragment="confirm_modal" class="modal fade text-center" id="confirmModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete Confirmation</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <span id="confirmText"></span>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-success" href="" id="yesButton">Yes</a>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
     <!-- Modal Dialog -->
     <div th:fragment="modal_dialog" class="modal fade text-center" id="modalDialog">
         <div class="modal-dialog">

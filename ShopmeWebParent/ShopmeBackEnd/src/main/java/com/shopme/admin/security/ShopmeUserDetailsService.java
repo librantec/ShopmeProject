@@ -10,8 +10,7 @@ import com.shopme.common.entity.User;
 
 public class ShopmeUserDetailsService implements UserDetailsService {
 
-	@Autowired
-	private UserRepository userRepo;
+	@Autowired private UserRepository userRepo;
 	
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

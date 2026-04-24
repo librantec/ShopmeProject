@@ -296,12 +296,17 @@ public class Product {
 		return "Product [id=" + id + ", name=" + name + "]";
 	}
 	
+	public void addExtraImage(String imageName) {
+		this.images.add(new ProductImage(imageName, this));
+	}
 	
-	  @Transient 
-	  public String getMainImagePath() { 
-		  if (id == null || mainImage == null) 
-		  return "/images/default-product.png"; return "/product-images/" +
-		  this.id + "/" + this.mainImage; 
-		  }
-	 	
+	@Transient
+	public String getMainImagePath() {
+		if (id == null || mainImage == null || mainImage.isEmpty() || mainImage.equals("default.png")) {
+			return "/images/image-thumbnail.png";
+		}
+		
+		return "/product-images/" + this.id + "/" + this.mainImage;
+	}
+
 }

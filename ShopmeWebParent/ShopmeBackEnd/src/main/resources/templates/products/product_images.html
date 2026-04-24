@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Product Shipping</title>
+</head>
+<body>
+    <div th:fragment="content" th:remove="tag">
+    <div class="row pt-3">
+        <!-- Main Image Section -->
+        <div class="col border m-3 p-2">
+            <div><label>Main Image:</label></div>
+            <div class="m-2">
+                <!-- Ang id="thumbnail" mao ni ang gamiton sa script.js para sa preview -->
+                <img id="thumbnail" alt="Main image preview" class="img-fluid"
+                    th:src="@{${product.mainImagePath}}" style="width: 150px;"/>
+            </div>
+            <div>
+                <!-- Ang name="fileImage" dapat match sa @RequestParam sa Controller -->
+                <input type="file" id="fileImage" name="fileImage" 
+                    accept="image/png, image/jpeg" class="mb-2"
+                    th:required="${product.id == null}" />
+            </div>
+        </div>
+        
+        <!-- Diri dapit ang Extra Images unya (Step 4 & 5) -->
+    </div>
+    </div>
+</body>
+</html>

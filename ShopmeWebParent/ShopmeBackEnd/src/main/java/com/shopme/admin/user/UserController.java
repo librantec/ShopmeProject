@@ -136,7 +136,7 @@ public class UserController {
 			service.delete(id); // I-delete sa DB
 			
 			// tawagon ang removeDir aron ma delete ang folder sa image.
-	        String userPhotosDir = "user-photos/" + id;
+	        String userPhotosDir = "../user-photos/" + id;
 	        FileUploadUtil.removeDir(userPhotosDir);
 	        
 			redirectAttributes.addFlashAttribute("message", "The user ID " + id + " has been deleted successfully");
