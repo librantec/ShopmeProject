@@ -139,7 +139,6 @@ $(document).ready(function() {
 function showChosenCategories(dropdown, div) {
 	dropdown.children("option:selected").each(function() {
 		var selectedCategory = $(this);
-		//catId = selectedCategory.val();
 		var catName = selectedCategory.text().replace(/-/g, "");
 		
 		div.append("<span class='badge bg-secondary m-1'>" + catName + "</span>");
@@ -247,50 +246,60 @@ var productExtraImagesCount = 0;
 function showExtraImageThumbnail(fileInput, index) {
     var file = fileInput.files[0];
     var reader = new FileReader();
-    
     reader.onload = function(e) {
         $("#extraThumbnail" + index).attr("src", e.target.result);
     };
-    
     reader.readAsDataURL(file);
 
-    // Kani nga logic: kung ang gi-click nimo mao ang pinaka-ubos nga input,
-    // diha pa siya mag-add og bag-ong section.
-	if (!$("#divExtraImage" + (index + 1)).length) {
+    // KANI ANG FIX: 
+    // I-check kon naa na ba'y 'X' button sa header sa current box. 
+    // Kon wala pa, ato kining i-append.
+    if (!$("#extraImageHeader" + index).find("a").length) {
+        addRemoveButton(index);
+    }
+
+    if (!$("#divExtraImage" + (index + 1)).length) {
         addNextExtraImageSection(index + 1);
     }
 }
 
+// Paghimo og function para dili balik-balik ang code
+function addRemoveButton(index) {
+    var htmlRemoveButton = `
+        <a class="btn fas fa-times-circle fa-2x icon-dark float-end" 
+           href="javascript:removeExtraImage(${index})" 
+           title="Remove this image"></a>
+    `;
+    $("#extraImageHeader" + index).append(htmlRemoveButton);
+}
+
+
+
 /* 3. Ang function nga mo-generate og bag-ong HTML */
 function addNextExtraImageSection(index) {
-    // defaultImageThumbnailSrc -> i-match ni sa imong placeholder image path
-    var defaultImageSrc = "/ShopmeAdmin/images/image-thumbnail.png"; 
+    var defaultImageSrc = "/ShopmeAdmin/images/image-thumbnail.png"; // i-match ang imong path
     
     htmlExtraImage = `
-        <div class="col border m-3 p-2" id="divExtraImage${index}">
+        <div class="col-sm-3 border m-2 p-2" id="divExtraImage${index}">
             <div id="extraImageHeader${index}">
-			<label>Extra Image #${index + 1}:</label>
-			<a class="btn fas fa-times-circle fa-2x icon-dark float-end" 
-			       href="javascript:removeExtraImage(${index})" 
-			       title="Remove this image"></a>
-			</div>
+                <label>Extra Image #${index + 1}:</label>
+                <!-- Wala sa'y 'X' button diri -->
+            </div>
             <div class="m-2">
                 <img id="extraThumbnail${index}" alt="Extra image #${index + 1} preview" class="img-fluid" 
                      src="${defaultImageSrc}" style="width: 150px; height: 150px; object-fit: cover;" />
             </div>
             <div>
-                <input type="file" name="extraImage" 
-                       accept="image/png, image/jpeg" 
+                <input type="file" name="extraImage" accept="image/png, image/jpeg" 
                        onchange="showExtraImageThumbnail(this, ${index})" />
             </div>
         </div>
     `;
 
-    // I-append ang bag-ong HTML sulod sa #divProductImages
     $("#divProductImages").append(htmlExtraImage);
-    
-    productExtraImagesCount++; // I-increase ang count
+    productExtraImagesCount++;
 }
+
 
 function removeExtraImage(index) {
     // Kani nga line maoy mopapas sa tibuok div box

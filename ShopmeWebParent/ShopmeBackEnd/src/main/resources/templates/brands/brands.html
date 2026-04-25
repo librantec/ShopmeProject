@@ -108,17 +108,19 @@
 			"ordering": false, // I-disable ang automatic sort
             "responsive": true,
             "columnDefs": [
-            	{ "responsivePriority": 1, "targets": 2 }, // Brand Name (Pabilin sa screen)
-                { "responsivePriority": 2, "targets": 4 }, // Actions (Pabilin sa screen)
+            	{ "responsivePriority": 1, "targets": 2 }, // Brand Name (Permi makita)
+                { "responsivePriority": 2, "targets": 4 }, // Actions (Permi makita)
                 { "responsivePriority": 3, "targets": 0 }, // Brand ID
                 
-                // KANI ANG MAGIC:
                 { 
                     "targets": 1, // Logo column
-                    "className": "none" // Ang 'none' sa DataTables nagpasabot: "Itago sa main table, pero ipakita sa child row (+)"
+                    "className": "desktop" // KANI ANG MAGIC: Ipakita lang ni kon Desktop/PC ang screen size.
                 },
                 
-                { "responsivePriority": 11, "targets": 3 } // Categories
+                { 
+                    "targets": 3, // Categories column
+                    "className": "not-mobile" // Itago ni sa Mobile pero ipakita sa Tablet pataas.
+                }
             ],
             "pageLength": 10,
             "stateSave": true,

@@ -7,10 +7,10 @@
 <body>
 <div th:fragment="content" th:remove="tag">
     <!-- Gamita ang d-flex ug flex-wrap para mo-linya sila pa-tuo -->
-    <div class="row d-flex flex-wrap justify-content-start pt-3" id="divProductImages">
+    <div class="row d-flex flex-wrap justify-content-center pt-3" id="divProductImages">
         
         <!-- Main Image Box -->
-        <div class="col-sm-4 border m-3 p-2">
+        <div class="col-sm-3 border m-2 p-2">
             <div><label>Main Image:</label></div>
             <div class="m-2">
                 <img id="thumbnail" alt="Main image preview" class="img-fluid" 
@@ -23,8 +23,10 @@
         </div>
 
         <!-- Extra Image #0 (Default box) -->
-        <div class="col-sm-4 border m-3 p-2" id="divExtraImage0">
-            <div><label>Extra Image #1:</label></div>
+        <div class="col-sm-3 border m-2 p-2" id="divExtraImage0">
+            <div id="extraImageHeader0">
+            <label>Extra Image #1:</label>
+            </div>
             <div class="m-2">
                 <img id="extraThumbnail0" alt="Extra image #1 preview" class="img-fluid" 
                      th:src="@{/images/image-thumbnail.png}" style="width: 150px; height: 150px; object-fit: cover;"/>
