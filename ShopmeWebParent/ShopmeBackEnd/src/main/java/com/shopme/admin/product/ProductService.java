@@ -22,6 +22,10 @@ public class ProductService {
 	public Product save(Product product) {
 		if (product.getId() == null) {
 			product.setCreatedTime(new Date());
+		} else {
+			// Kon Edit Mode, mas maayo nga i-retrieve ang karaan nga createdTime 
+	        // gikan sa DB aron dili kini mawala/ma-null. 
+	        // Pero pwede ra ni nimo balikan inig abot nimo sa Edit video.
 		}
 		
 		if (product.getAlias() == null || product.getAlias().isEmpty()) {
