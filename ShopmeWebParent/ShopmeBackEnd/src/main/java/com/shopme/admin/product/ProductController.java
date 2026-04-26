@@ -129,7 +129,6 @@ public class ProductController {
 	@GetMapping("/products/delete/{id}")
 	public String deleteProduct(@PathVariable Integer id,
 			Model model, RedirectAttributes redirectAttributes) {
-		
 		try {
 			productService.delete(id);
 			
