@@ -70,7 +70,6 @@ public class ProductController {
 	    
 	    // 4. I-save ang mga Files sa folder
 	    saveUploadedImages(mainImageMultipart, extraImageMultipart, savedProduct);
-	        
 	    ra.addFlashAttribute("message", "The product has been saved successfully.");
 	    
 	    return "redirect:/products";
