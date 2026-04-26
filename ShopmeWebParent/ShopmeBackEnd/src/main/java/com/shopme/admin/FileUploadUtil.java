@@ -57,12 +57,15 @@ public class FileUploadUtil {
     
     // iyaha i-remove ang tibuok folder sa image during sa pag delete sa file sa users.
     public static void removeDir(String dir) {
-    	cleanDir(dir); // limpyohan una ang sulod sa (files)
-    	
-    	try {
-            Files.delete(Paths.get(dir)); // Human, tangtangon ang folder
-        } catch (IOException e) {
-            System.out.println("Could not remove directory: " + dir);
+        Path dirPath = Paths.get(dir);
+
+        if (Files.exists(dirPath)) {
+            cleanDir(dir); // limpyohan una ang sulod sa (files)
+            try {
+                Files.delete(dirPath); // Human, tangtangon ang folder
+            } catch (IOException e) {
+                System.out.println("Could not remove directory: " + dir);
+            }
         }
     }
 }

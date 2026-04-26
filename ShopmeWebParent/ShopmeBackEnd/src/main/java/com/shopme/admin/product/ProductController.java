@@ -133,8 +133,19 @@ public class ProductController {
 		
 		try {
 			productService.delete(id);
-			redirectAttributes.addFlashAttribute("message",
-					"The Product ID " + id + " has been deleted successfully.");
+			
+			// KANI NGA MGA STATEMENT ANG I-DUGANG:
+	        String productExtraImagesDir = "../product-images/" + id + "/extras";
+	        String productImagesDir = "../product-images/" + id;
+	        
+	        // 1. Limpyohan ug tangtangon ang 'extras' folder
+	        FileUploadUtil.removeDir(productExtraImagesDir);
+	        
+	        // 2. Limpyohan ug tangtangon ang main product folder
+	        FileUploadUtil.removeDir(productImagesDir);
+			
+	        redirectAttributes.addFlashAttribute("message", "The Product ID " + id + " has been deleted successfully.");
+		
 		} catch (ProductNotFoundException ex) {
 			redirectAttributes.addFlashAttribute("message", ex.getMessage());
 		}
