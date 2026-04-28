@@ -70,7 +70,6 @@ public class ProductController {
 	    
 	    // 4. I-save ang mga Files sa folder
 	    saveUploadedImages(mainImageMultipart, extraImageMultipart, savedProduct);
-	        
 	    ra.addFlashAttribute("message", "The product has been saved successfully.");
 	    
 	    return "redirect:/products";
@@ -130,7 +129,6 @@ public class ProductController {
 	@GetMapping("/products/delete/{id}")
 	public String deleteProduct(@PathVariable Integer id,
 			Model model, RedirectAttributes redirectAttributes) {
-		
 		try {
 			productService.delete(id);
 			
