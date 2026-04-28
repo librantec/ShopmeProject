@@ -64,7 +64,7 @@
 							<!-- <img th:if="${user.photos != null}" th:src="@{${user.photosImagePath}}" style="width: 50px"
 								class="img-thumbnail d-block mx-auto" /> -->
 							<img th:if="${user.photos != null and user.photos != ''}"
-							th:src="@{${user.photosImagePath}}" style="width: 100px"
+							th:src="@{${user.photosImagePath}}" style="width: 120px; height: 120px; object-fit: contain;"
 							class="img-thumbnail d-block mx-auto" />
 						</td>
 						<td>[[${user.email}]]</td>
